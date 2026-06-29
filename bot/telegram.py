@@ -10,7 +10,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 
-from bot.router import router
+from bot.routers import setup_router
 from config import settings
 from utils.logger import logger
 
@@ -28,8 +28,9 @@ class TelegramBot:
 
         self.dp = Dispatcher()
 
-        self.dp.include_router(router)
-
+        self.dp.include_router(
+            setup_router()
+       )
     async def start(self):
 
         logger.info("Initializing Telegram Dispatcher...")
